@@ -7,4 +7,14 @@ class ItemsController < ApplicationController
   def new
     @item = Item.all
   end
+
+  def cteate
+    Item.create(name: item_params[:name], price: item_params[:price], user_id: current_user.id)
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:name, :price)
+  end
 end
